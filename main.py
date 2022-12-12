@@ -12,6 +12,10 @@ hands = hand.Hand(max_hands=2)
 try:
     while 1:
         success, img = cam.read()
-        hand.DetectHands(img, hands)
+        val = hand.DetectHands(img, hands)
+        print(val)
 except KeyboardInterrupt:
     cam.release()
+    cv2.destroyAllWindows()
+cam.release()
+cv2.destroyAllWindows()

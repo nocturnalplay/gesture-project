@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 from google.protobuf.json_format import MessageToDict
+import json
 
 
 def Hand(max_hands=2,
@@ -27,7 +28,7 @@ def DetectHands(
 ):
     # first try to initialization the socket server
     try:
-        pTime = cTime = 0
+        # pTime = cTime = 0
         img = cv2.flip(img, 1)
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         result = hands.process(imgRGB)
@@ -82,15 +83,18 @@ def DetectHands(
                         # cv2.circle(
                         #     img, (right[0][0], right[0][1]), 8, (0, 255, 0), cv2.FILLED)
         # FPS count of the image
-        cTime = time.time()
-        fps = 1/(cTime-pTime)
-        pTime = cTime
+        # cTime = time.time()
+        # fps = 1/(cTime-pTime)
+        # pTime = cTime
         # FPS text on screen
-        cv2.putText(img, f'FPS:{int(fps)}', (400, 70),
-                    cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+        # cv2.putText(img, f'FPS:{int(fps)}', (400, 70),
+        #             cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
         cv2.imshow("Images", img)
         cv2.waitKey(1)
+        data = '{"status":True}'
+        return json.dumps(data)
 
     except KeyboardInterrupt:
         cv2.destroyAllWindows()
         print("\nExit...")
+        return False
