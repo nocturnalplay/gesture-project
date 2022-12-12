@@ -9,7 +9,6 @@ def Hand(max_hands=2,
          detection_confidence=0.5,
          tracking_confidence=0.5):
     # videocapture initialization
-    pTime = cTime = 0
     mpHande = mp.solutions.hands
     mpDraw = mp.solutions.drawing_utils
 
@@ -28,6 +27,7 @@ def DetectHands(
 ):
     # first try to initialization the socket server
     try:
+        pTime = cTime = 0
         img = cv2.flip(img, 1)
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         result = hands.process(imgRGB)
@@ -92,4 +92,5 @@ def DetectHands(
         cv2.waitKey(1)
 
     except KeyboardInterrupt:
+        cv2.destroyAllWindows()
         print("\nExit...")

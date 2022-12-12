@@ -9,6 +9,9 @@ cam.set(4, Hcam)
 
 hands = hand.Hand(max_hands=2)
 
-while 1:
-    success, img = cam.read()
-    hand.DetectHands(img, hands)
+try:
+    while 1:
+        success, img = cam.read()
+        hand.DetectHands(img, hands)
+except KeyboardInterrupt:
+    cam.release()
