@@ -89,12 +89,12 @@ def DetectHands(
         # FPS text on screen
         # cv2.putText(img, f'FPS:{int(fps)}', (400, 70),
         #             cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-        cv2.imshow("Images", img)
-        cv2.waitKey(1)
-        data = '{"status":True}'
-        return json.dumps(data)
+        data = {"status": True, "data": {
+            "left": left, "right": right}, "image": img}
+        return data
 
     except KeyboardInterrupt:
         cv2.destroyAllWindows()
         print("\nExit...")
-        return False
+        data = {"status": False, "data": []}
+        return data
