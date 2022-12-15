@@ -59,7 +59,7 @@ async def handler(websocket):
 
 async def main():
     print("server created on 3333 port")
-    async with serve(handler, "192.168.1.7", 3333):
+    async with serve(handler, "127.0.0.1", 3333):
         await asyncio.Future()  # run forever
 
 asyncio.run(main())

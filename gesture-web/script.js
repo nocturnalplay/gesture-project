@@ -5,7 +5,7 @@
 //     mouse.style.top = e.clientY + "px"
 // }
 window.onload = () => {
-    const ws = new WebSocket("ws://192.168.1.7:3333")
+    const ws = new WebSocket("ws://127.0.0.1:3333")
 
     ws.onopen = () => {
         console.log("web socket connected")
